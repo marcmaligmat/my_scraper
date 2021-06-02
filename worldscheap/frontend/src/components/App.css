@@ -1,0 +1,28 @@
+input[type="radio"]{
+    display: none !important;
+}
+
+.star{
+    cursor: pointer;
+    transition: color 200ms;
+}
+
+.user_image{
+    border-radius: 50px;
+    height: 60px;
+    width: 60px;
+}
+
+.media-body{
+    padding:5px 20px;
+}
+.review-date{
+    vertical-align: 
+}
+
+.client-title {
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+    padding:0;
+}

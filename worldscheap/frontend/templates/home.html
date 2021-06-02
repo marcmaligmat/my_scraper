@@ -1,0 +1,392 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+<!-- =========================
+    Magazine top Section
+============================== -->
+
+
+<section class="magazine-top">
+    <div class="container-fluid custom-width">
+        <div class="row">
+            <div class="col-lg-2 col-xl-2 d-md-none d-xl-block">
+                <div class="mag-left-banner">
+                    <img src="{% static 'img/product-img/mag-left-banner.png' %}" alt="">
+                    <a href="shop-left-sidebar.html" class="btn btn-primary wd-shop-btn">Shop Now</a>
+                </div>
+            </div>
+            <div class="col-lg-12 col-xl-10 ">
+                <!--Holiday deals area start-->
+                <div class="holiday-deals">
+                    <div class=" row d-flex  align-items-center">
+                        <div class="order-2 order-sm-1 col-lg-12 col-xl-2">
+                            <h6>Your Holiday Deals</h6>
+                        </div>
+                        
+                        <div class="order-3 order-sm-2 col-12 col-sm-8 col-md-9 col-lg-9 col-xl-7">
+                            <!--Single holiday car-->
+                            <div class="holiday-carousel owl-carousel owl-theme">
+                                
+                                {% for deal in deals%}
+                                
+                                <div class="sin-hol-car item">
+                                    <a href="{% url 'game_details' slug=deal.slug %}">
+                                        <div class="hc-l">
+                                        <p>{{ deal.name}}</p>
+                                        <p><span>${{ deal.cheapest }}</span> - $45</p>
+                                    </div>
+                                    <div class="hc-r">
+                                        <img src="{{ deal.image_home_small }}" alt="">
+                                    </div>
+                                        
+                                    </a>
+                                </div>
+                                {% endfor %}
+                                
+                                
+                                
+                                
+                            </div>
+                            
+                        </div>
+                        <div class="order-1 order-sm-3 col-12 col-sm-4 col-md-3 col-lg-3 col-xl-3 ">
+                            <div class="notice-board">
+                                <a href=""><img src="{% static 'img/icon/notice.png' %}" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Holiday deals area end-->
+                <!--Magazine Big offer start-->
+                <div class="big-offer ">
+                    <div class="sin-big-offer n1">
+                        <img src="{{ game.image_home_first.url }}" alt="">
+                        <a href="{% url 'game_details' slug=game.game.slug %}" class="btn btn-primary wd-shop-btn pos-1">Shop Now</a>
+                    </div>
+                    
+                    <div class="sin-big-offer mar-left n2">
+                        <img src="{{ game.image_home.url }}" alt="">
+                        
+                        <a href="{% url 'game_details' slug=game.game.slug %}" class="btn btn-primary wd-shop-btn pos-2">Shop Now</a>
+                        
+                        <div class="count-down">
+                            <div data-countdown="2018/12/11"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="sin-big-offer n3">
+                        <img src="{{ game.image_home.url }}" alt="">
+                        <a href="{% url 'game_details' slug=game.game.slug %}" class="btn btn-primary wd-shop-btn pos-3">Shop Now</a>
+                    </div>
+                </div>
+                <!--Magazine Big offer end-->
+                
+                <div class="mag-details">
+                    <div class="wd-service">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-4 col-xl-4 wow fadeIn animated" data-wow-delay="0.2s">
+                                <ul class="list-unstyled">
+                                    <li class="media">
+                                        <img class="d-flex mr-3" src="{% static 'img/compare-icon.png' %}" alt="compare-icon">
+                                        <div class="media-body">
+                                            <h5 class="wd-service-title mt-0 mb-1">Lets Compare</h5>
+                                            <p>Choose your product with price comparisons make your best deal today</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-12 col-lg-4 col-xl-4 wow fadeIn animated" data-wow-delay="0.4s">
+                                <ul class="list-unstyled">
+                                    <li class="media">
+                                        <img class="d-flex mr-3" src="{% static 'img/review-icon.png' %}" alt="compare-icon">
+                                        <div class="media-body">
+                                            <h5 class="wd-service-title mt-0 mb-1">Take Review</h5>
+                                            <p>Choose your product with price comparisons make your best deal today</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-12 col-lg-4 col-xl-4 wow fadeIn animated" data-wow-delay="0.6s">
+                                <ul class="list-unstyled">
+                                    <li class="media">
+                                        <img class="d-flex mr-3" src="{% static 'img/store-icon.png' %}" alt="compare-icon">
+                                        <div class="media-body">
+                                            <h5 class="wd-service-title mt-0 mb-1">Choose Multi-Vendor Store</h5>
+                                            <p>Choose your product with price comparisons make your best deal today</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================
+        Trending Section
+    ============================== -->
+    <section id="trending">
+    	<div class="container-fluid custom-width">
+    		<div class="row">
+    			<div class="col-md-12">
+    				<div class="section-title-center text-center">
+    					<h2 class="title">TOP GAMES</h2>
+    				</div>
+    			</div>
+				<div id="product-trending-two" class="owl-carousel owl-theme">
+
+                    {% for game in deals %}
+	    			<div class="col-md-12">
+						<figure class="figure product-box">
+							<div class="product-box-img">
+                                <a href="{% url 'game_details' slug=game.slug %}">
+                                    <img src="{{ game.image_home_medium }}" class="figure-img img-fluid" alt="Product Img">
+                                </a>
+							</div>
+
+							<figcaption class="figure-caption text-center">
+								<span class="badge badge-secondary wd-badge text-uppercase">New</span>
+								<div class="wishlist">
+									<i class="fa fa-heart" aria-hidden="true"></i>
+								</div>
+								<div class="price-start">
+									<p>Price start from   <strong class="active-color"><u>${{ game.cheapest }}</u> - <u>$75.00</u></strong></p>
+								</div>
+								<div class="content-excerpt">
+									<p>{{ game.name }}</p>
+								</div>
+								<div class="rating">
+									<a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+									<a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+									<a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+									<a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+									<a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+								</div>
+								<div class="compare-btn">
+									<a class="btn btn-primary btn-sm" href="{% url 'game_details' slug=game.slug %}"><i class="fa fa-exchange" aria-hidden="true"></i> Compare Prices</a>
+								</div>
+							</figcaption>
+						</figure>
+	    			</div>
+                    {% endfor %}
+                    
+				</div>
+    		</div>
+    	</div>
+    </section>    
+
+<!-- =========================
+    Magazine tab  Section
+============================== -->
+<!-- <section class="tab-magazine recent-pro-2">
+    <div class="container-fluid custom-width">
+        <div class="row">
+            <div class="col-lg-8 col-xl-6">
+                <div class="tab-maga-wrapper">
+                    <ul class="nav nav-tabs wd-amazon-product-tabs " id="myTab-recent" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">Market 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="ebay-tab" data-toggle="tab" href="#ebay" role="tab" aria-controls="ebay">Market 2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="Elipkart-tab" data-toggle="tab" href="#Elipkart" role="tab" aria-controls="Elipkart">Market 3</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="aliexpress-tab" data-toggle="tab" href="#aliexpress" role="tab" aria-controls="aliexpress">Market 4</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="alibaba-tab" data-toggle="tab" href="#alibaba" role="tab" aria-controls="alibaba">Market 5</a>
+                            </li>
+                        </ul>
+                <div class="tab-content" id="myTabContent-recent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="magazine-sin">
+                            <img src="{% static 'img/blog-img/mag-tab1.jpg' %}" alt="">
+                            <div class="magazine-tab-con">
+                                <h2>Featured deals in <br>Mobiles &<span>Accessories</span></h2>
+                                <p><span>$1189</span> - $356</p>
+                                <div class="tab-bottom">
+                                    <h3><a href="#">OnePlus 5T (Midnight Black 6GB RAM + 64GB memory)</a></h3>
+                                    <div class="tab-rating">
+                                        <p>4.5</p>
+                                        <div class="rating">
+                                            <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="ebay" role="tabpanel" aria-labelledby="ebay-tab">
+                        <div class="magazine-sin">
+                            <img src="{% static 'img/blog-img/mag-tab1.jpg' %}" alt="">
+                            <div class="magazine-tab-con">
+                                <h2>Featured deals in <br>Mobiles &<span>Accessories</span></h2>
+                                <p><span>$1189</span> - $356</p>
+                                <div class="tab-bottom">
+                                    <h3><a href="#">OnePlus 5T (Midnight Black 6GB RAM + 64GB memory)</a></h3>
+                                    <div class="tab-rating">
+                                        <p>4.5</p>
+                                        <div class="rating">
+                                            <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="Elipkart" role="tabpanel" aria-labelledby="Elipkart-tab">
+                        <div class="magazine-sin">
+                            <img src="{% static 'img/blog-img/mag-tab1.jpg' %}" alt="">
+                            <div class="magazine-tab-con">
+                                <h2>Featured deals in <br>Mobiles &<span>Accessories</span></h2>
+                                <p><span>$1189</span> - $356</p>
+                                <div class="tab-bottom">
+                                    <h3><a href="#">OnePlus 5T (Midnight Black 6GB RAM + 64GB memory)</a></h3>
+                                    <div class="tab-rating">
+                                        <p>4.5</p>
+                                        <div class="rating">
+                                            <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="aliexpress" role="tabpanel" aria-labelledby="aliexpress-tab">
+                        <div class="magazine-sin">
+                            <img src="{% static 'img/blog-img/mag-tab1.jpg' %}" alt="">
+                            <div class="magazine-tab-con">
+                                <h2>Featured deals in <br>Mobiles &<span>Accessories</span></h2>
+                                <p><span>$1189</span> - $356</p>
+                                <div class="tab-bottom">
+                                    <h3><a href="#">OnePlus 5T (Midnight Black 6GB RAM + 64GB memory)</a></h3>
+                                    <div class="tab-rating">
+                                        <p>4.5</p>
+                                        <div class="rating">
+                                            <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="alibaba" role="tabpanel" aria-labelledby="alibaba-tab">
+                        <div class="magazine-sin">
+                            <img src="{% static 'img/blog-img/mag-tab1.jpg' %}" alt="">
+                            <div class="magazine-tab-con">
+                                <h2>Featured deals in <br>Mobiles &<span>Accessories</span></h2>
+                                <p><span>$1189</span> - $356</p>
+                                <div class="tab-bottom">
+                                    <h3><a href="#">OnePlus 5T (Midnight Black 6GB RAM + 64GB memory)</a></h3>
+                                    <div class="tab-rating">
+                                        <p>4.5</p>
+                                        <div class="rating">
+                                            <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-xl-6">
+                <div class="row">
+                    <div class="col-xl-8">
+                        <div class="c-area-wrapper">
+                            <div class="sin-tab-pro">
+                                <div class="st-img">
+                                    <img src="{% static 'img/product-img/mag-tabs1.jpg' %}" alt="">
+                                </div>
+                                <div class="tp-content">
+                                    <a href="#">HTC Desire 530 and Scorebox example</a>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                        <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                        <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                        <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                        <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                    </div>
+                                    <p>October 28, 2016 2 comments</p>
+                                </div>
+                            </div>
+                            
+                            <div class="sin-tab-pro">
+                                <div class="st-img">
+                                    <img src="{% static 'img/product-img/mag-tabs2.jpg' %}" alt="">
+                                </div>
+                                <div class="tp-content">
+                                    <a href="#">LG K7 and combined Content Egg</a>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                        <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                        <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                        <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                        <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                    </div>
+                                    <p>October 28, 2016 2 comments</p>
+                                </div>
+                            </div>
+                            
+                            <div class="sin-tab-pro">
+                                <div class="st-img">
+                                    <img src="{% static 'img/product-img/mag-tabs3.jpg' %}" alt="">
+                                </div>
+                                <div class="tp-content">
+                                    <a href="#">Samsung galaxy S7 and how to divide </a>
+                                    <div class="rating">
+                                        <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                        <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                        <a href="#"><i class="fa fa-star active-color" aria-hidden="true"></i></a>
+                                        <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                        <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                                    </div>
+                                    <p>October 28, 2016 2 comments</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 d-md-none d-xl-block">
+                        <div class="mag-add">
+                            <a href="#"><img src="{% static 'img/product-img/mag-add.jpg' %}" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section> -->
+
+
+{% endblock %}
